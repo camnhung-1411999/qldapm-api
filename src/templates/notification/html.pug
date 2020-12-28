@@ -1,0 +1,112 @@
+head
+  meta(http-equiv='content-type' content='text/html; charset=utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0;')
+  meta(name='format-detection' content='telephone=no')
+  //
+    Responsive Mobile-First Email Template by Konstantin Savchenko, 2015.
+    https://github.com/konsav/email-templates/
+  style.
+    /* Reset styles */
+    body { margin: 0; padding: 0; min-width: 100%; width: 100% !important; height: 100% !important;}
+    body, table, td, div, p, a { -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; border-spacing: 0; }
+    img { border: 0; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
+    #outlook a { padding: 0; }
+    .ReadMsgBody { width: 100%; } .ExternalClass { width: 100%; }
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+    /* Rounded corners for advanced mail clients only */
+    @media all and (min-width: 560px) {
+    .container { border-radius: 8px; -webkit-border-radius: 8px; -moz-border-radius: 8px; -khtml-border-radius: 8px;}
+    }
+    /* Set color for auto links (addresses, dates, etc.) */
+    a, a:hover {
+    color: #127DB3;
+    }
+    .footer a, .footer a:hover {
+    color: #999999;
+    }
+  // MESSAGE SUBJECT
+  title Get this responsive email template
+// BODY
+// Set message background color (twice) and text color (twice)
+// SECTION / BACKGROUND
+// Set message background color one again
+table.background(width='100%' align='center' border='0' cellpadding='0' cellspacing='0' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;')
+  tr
+    td.image-section(colspan='4' valign='top' style='border-collapse: collapse;border: 0;margin: 0;padding: 0;-webkit-text-size-adjust: none;color: #555559;font-family: Arial, sans-serif;font-size: 16px;line-height: 26px;background-color: #fff;border-bottom: 4px solid #00a5b5')
+      img.top-image(src='https://wcm-cdn.wacom.com/-/media/developer/images/products/detail%20page%20icon/will-sdk-for-signature.png?h=225&w=313&la=en&rev=040a1f38c0de4618befc91a92e4914a3&hash=8AE04F2C2B44D61972580BF28666DE38' style='line-height: 1;height: 100px;width: 200px;' alt='Tenable Network Security')
+  tr
+    td(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;' bgcolor='#F0F0F0')
+      table.container(border='0' cellpadding='0' cellspacing='0' align='center' bgcolor='#FFFFFF' width='560' style='border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;\
+      max-width: 560px;')
+        tr
+          td.header(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 24px; font-weight: bold; line-height: 130%;\
+          padding-top: 25px;\
+          color: #000000;\
+          font-family: sans-serif;')
+            | You received a file in Signature website
+        // SUBHEADER
+        // Set text color and font family ("sans-serif" or "Georgia, serif")
+        tr
+          td.subheader(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%;\
+          padding-top: 5px;\
+          color: #000000;\
+          font-family: sans-serif;')
+            | from: #{data.fromEmail} 
+        tr
+          td.hero(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;\
+          padding-top: 20px;')
+            a(target='_blank' style='text-decoration: none;' href='https://github.com/konsav/email-templates/')
+              img(border='0' vspace='0' hspace='0' src='https://www.vous-etes-au-top.com/wp-content/uploads/2017/04/push.png' alt='Please enable images to view this content' title='Hero Image' width='560' style='\
+              width: 100%;\
+              max-width: 560px;\
+              color: #000000; font-size: 13px; margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;')
+        // PARAGRAPH
+        // Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height
+        tr
+          td.paragraph(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%;\
+          padding-top: 25px; \
+          color: #000000;\
+          font-family: sans-serif;')
+            | World-Class Security. Fast, Easy &amp; Secure. Sign On Any Device. Easiest Setup Experience.
+        // BUTTON
+        // Set button background color at TD, link/text color at A and TD, font family ("sans-serif" or "Georgia, serif") at TD. For verification codes add "letter-spacing: 5px;". Link format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content={{Button-Name}}&utm_campaign={{Campaign-Name}}
+        tr
+          td.button(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;\
+          padding-top: 25px;\
+          padding-bottom: 5px;')
+            a(href='https://github.com/konsav/email-templates/' target='_blank' style='text-decoration: underline;')
+              table(border='0' cellpadding='0' cellspacing='0' align='center' style='max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;')
+                tr
+                  td(align='center' valign='middle' style='padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;' bgcolor='#E9703E')
+                    a(target='_blank' style='text-decoration: underline;\
+                    color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;' href=`${data.url}`)
+                      | Go to the website
+        // LINE
+        // Set line color
+        tr
+          td.line(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;\
+          padding-top: 25px;')
+            hr(color='#E0E0E0' align='center' width='100%' size='1' noshade='' style='margin: 0; padding: 0;')
+        // LIST
+        tr
+          td.list-item(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;')
+            table(align='center' border='0' cellspacing='0' cellpadding='0' style='width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;')
+              // LIST ITEM
+              // LIST ITEM
+        // LINE
+        // Set line color
+        tr
+          td.line(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;\
+          padding-top: 25px;')
+            hr(color='#E0E0E0' align='center' width='100%' size='1' noshade='' style='margin: 0; padding: 0;')
+        // PARAGRAPH
+        // Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height
+        tr
+          td.paragraph(align='center' valign='top' style='border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%;\
+          padding-top: 20px;\
+          padding-bottom: 25px;\
+          color: #000000;\
+          font-family: sans-serif;')
+            | Have a&nbsp;question? 
+            a(href='mailto:support@ourteam.com' target='_blank' style='color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;') support@ourteam.com
