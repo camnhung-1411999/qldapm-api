@@ -7,6 +7,7 @@ export type IFile = mongoose.Document & {
   type: string;
   size: number;
   name: string;
+  signed: boolean;
 };
 
 const fileSchema = new mongoose.Schema({
@@ -14,6 +15,7 @@ const fileSchema = new mongoose.Schema({
     path: { type: String},
     type: { type: String},
     name: { type: String},
+    signed: {type: Boolean},
     size: Number,
 }, { timestamps: true });
 

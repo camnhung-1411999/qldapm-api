@@ -1,5 +1,4 @@
 import FileCollection, {IFile} from '../model/file.model';
-
 class FileService {
     async list(email: string) {
         return FileCollection.find({ 
@@ -20,6 +19,8 @@ class FileService {
         })
     }
 
+    
+
     async create(input: IFile) {
         return FileCollection.create({
             email: input.email,
@@ -27,6 +28,7 @@ class FileService {
             type: input.type,
             size: input.size,
             name: input.name,
+            signed: false,
         }).then(result =>(result));
     }
 
@@ -41,6 +43,8 @@ class FileService {
         }
         file.name = input.name ? input.name : file.name;
         file.size = input.size ? input.size : file.size;
+        file.path = input.path ? input.path : file.path;
+        file.signed = input.signed;
         await file.save();
         return file;
     }
