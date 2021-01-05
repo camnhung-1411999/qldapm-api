@@ -66,31 +66,38 @@ class FileController {
     const file = await FileService.find(req.params.id);
     const email = await User(req, res);
     const user = await UserService.find(email);
-    signToFile(file, user).then((pathFile) => {
-      {
-        cloudinary.v2.uploader.upload(
-          pathFile,
-          { resource_type: "raw" },
-          async (err: any, result: any) => {
-            await unlinkAsync(pathFile);
-            if (err) {
-              throw err;
-            } else {
-              let input: any = {
-                id: file._id,
-                size: result.bytes,
-                path: result.url,
-                type: result.format,
-                signed: true,
-              };
-              FileService.update(input).then((iresult) => {
-                res.json(iresult);
-              });
+    if(!user.signature){
+      res.status(401).json({
+        message: 'SIGNATURE_NOT_FOUND'
+      })
+    } else {
+      signToFile(file, user).then((pathFile) => {
+        {
+          cloudinary.v2.uploader.upload(
+            pathFile,
+            { resource_type: "raw" },
+            async (err: any, result: any) => {
+              await unlinkAsync(pathFile);
+              if (err) {
+                throw err;
+              } else {
+                let input: any = {
+                  id: file._id,
+                  size: result.bytes,
+                  path: result.url,
+                  type: result.format,
+                  signed: true,
+                };
+                FileService.update(input).then((iresult) => {
+                  res.json(iresult);
+                });
+              }
             }
-          }
-        );
-      }
-    });
+          );
+        }
+      });
+    }
+    
   }
 
   async delete(req: Request, res: Response) {

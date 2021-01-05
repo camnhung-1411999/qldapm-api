@@ -43,6 +43,7 @@ class FileService {
                 type: input.type,
                 size: input.size,
                 name: input.name,
+                signed: false,
             }).then(result => (result));
         });
     }
@@ -58,6 +59,8 @@ class FileService {
             }
             file.name = input.name ? input.name : file.name;
             file.size = input.size ? input.size : file.size;
+            file.path = input.path ? input.path : file.path;
+            file.signed = input.signed;
             yield file.save();
             return file;
         });

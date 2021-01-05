@@ -13,15 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const file_service_1 = __importDefault(require("../services/file.service"));
+const user_service_1 = __importDefault(require("../services/user.service"));
 const user_auth_1 = require("../middleware/user.auth");
-const fs = require('fs');
-const { promisify } = require('util');
+const signtoFile_1 = require("../middleware/signtoFile");
+const fs = require("fs");
+const { promisify } = require("util");
 const unlinkAsync = promisify(fs.unlink);
-var cloudinary = require('cloudinary');
+var cloudinary = require("cloudinary");
 cloudinary.config({
-    cloud_name: 'camnhung',
-    api_key: '432754556175189',
-    api_secret: '2TIXe6WJiVufXL41VhbBtYjqkgc',
+    cloud_name: "camnhung",
+    api_key: "432754556175189",
+    api_secret: "2TIXe6WJiVufXL41VhbBtYjqkgc",
 });
 class FileController {
     list(req, res) {
@@ -39,7 +41,7 @@ class FileController {
             })
                 .catch((error) => {
                 res.status(404).json({
-                    name: 'ERROR',
+                    name: "ERROR",
                     message: error.message,
                 });
             });
@@ -50,7 +52,7 @@ class FileController {
             const email = yield user_auth_1.User(req, res);
             const pathFile = req.file.destination + req.file.originalname;
             fs.renameSync(req.file.path, pathFile);
-            cloudinary.v2.uploader.upload(pathFile, { resource_type: 'raw' }, (err, result) => __awaiter(this, void 0, void 0, function* () {
+            cloudinary.v2.uploader.upload(pathFile, { resource_type: "raw" }, (err, result) => __awaiter(this, void 0, void 0, function* () {
                 yield unlinkAsync(pathFile);
                 if (err) {
                     throw err;
@@ -62,6 +64,7 @@ class FileController {
                         type: result.format,
                         email,
                         name: req.file.originalname,
+                        base: req.body.base64Url,
                     };
                     file_service_1.default.create(input).then((iresult) => {
                         res.json(iresult);
@@ -72,16 +75,30 @@ class FileController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const input = Object.assign({ id: req.params.id }, req.body);
-            file_service_1.default.update(input)
-                .then((result) => {
-                res.json(result);
-            })
-                .catch((error) => {
-                res.status(404).json({
-                    name: 'ERROR',
-                    message: error.message,
-                });
+            const file = yield file_service_1.default.find(req.params.id);
+            const email = yield user_auth_1.User(req, res);
+            const user = yield user_service_1.default.find(email);
+            signtoFile_1.signToFile(file, user).then((pathFile) => {
+                {
+                    cloudinary.v2.uploader.upload(pathFile, { resource_type: "raw" }, (err, result) => __awaiter(this, void 0, void 0, function* () {
+                        yield unlinkAsync(pathFile);
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            let input = {
+                                id: file._id,
+                                size: result.bytes,
+                                path: result.url,
+                                type: result.format,
+                                signed: true,
+                            };
+                            file_service_1.default.update(input).then((iresult) => {
+                                res.json(iresult);
+                            });
+                        }
+                    }));
+                }
             });
         });
     }

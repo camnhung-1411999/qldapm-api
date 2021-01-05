@@ -10,6 +10,7 @@ const fileSchema = new mongoose_1.default.Schema({
     path: { type: String },
     type: { type: String },
     name: { type: String },
+    signed: { type: Boolean },
     size: Number,
 }, { timestamps: true });
 const FileCollection = mongoose_1.default.model('file', fileSchema);
